@@ -1,5 +1,6 @@
 /**
  * Package for calculator task.
+ * Package for Fit task.
  *
  * @author Artem Khizhniakov (mailto:artem_khizhniakov@mail.ru)
  * @version $Id$
