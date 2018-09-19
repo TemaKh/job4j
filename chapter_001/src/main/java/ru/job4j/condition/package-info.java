@@ -1,6 +1,7 @@
 /**
  * Package for condition task.
  * Package for DummyBot task.
+ * Package for Triangle task.
  *
  * @author Artem Khizhniakov (mailto:artem_khizhniakov@mail.ru)
  * @version $Id$
