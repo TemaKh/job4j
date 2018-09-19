@@ -1,5 +1,6 @@
 /**
  * Package for point test task.
+ * Package for DummyBot test task.
  *
  * @author Artem Khizhniakov (mailto:artem_khizhniakov@mail.ru).
  * @version $Id$.

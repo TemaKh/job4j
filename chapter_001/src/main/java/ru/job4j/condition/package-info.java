@@ -1,5 +1,6 @@
 /**
  * Package for condition task.
+ * Package for DummyBot task.
  *
  * @author Artem Khizhniakov (mailto:artem_khizhniakov@mail.ru)
  * @version $Id$
