@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Удаление дубликатов в массиве.
  */
 public class ArrayDuplicate {
+
     /**
      * Метод удаляет дубликаты в массиве.
      * @param array масив в котором нужно удалить дубликаты.

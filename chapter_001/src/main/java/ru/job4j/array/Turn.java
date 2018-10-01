@@ -4,6 +4,7 @@ package ru.job4j.array;
  * Перевернуть массив.
  */
 public class Turn {
+
     /**
      * Перевернуть массив.
      * @param array массив чисел который нужно перевернуть.

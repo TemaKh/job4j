@@ -4,6 +4,7 @@ package ru.job4j.array;
  * Проверяет, что все элементы по диагоналям равны true или false.
  */
 public class MatrixCheck {
+
     /**
      * Метод должен проверить, что все элементы по диагоналям равны true или false.
      * @param data массив заполненный значениями true или false.

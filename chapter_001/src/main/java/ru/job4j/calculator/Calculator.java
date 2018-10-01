@@ -11,7 +11,6 @@ public class Calculator {
      * field result.
      */
     private double result;
-
     /**
      * Method add.
      * @param first .
@@ -21,7 +20,6 @@ public class Calculator {
     public void add(double first, double second) {
         this.result = first + second;
     }
-
     /**
      * Method subtract.
      * @param first .
@@ -31,7 +29,6 @@ public class Calculator {
     public void subtract(double first, double second) {
         this.result = first - second;
     }
-
     /**
      * Method div.
      * @param first .

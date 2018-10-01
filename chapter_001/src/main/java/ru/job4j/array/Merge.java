@@ -16,7 +16,6 @@ public class Merge {
         }
         return result;
     }
-
     /**
      * Метод соединяет два отсортированных массива, возвращая результирующий отсортированный массив.
      * @param oneArray первый отсортированный массив.
@@ -38,7 +37,6 @@ public class Merge {
         while (countOne < oneArray.length) {
             resultArray[countResult++] = oneArray[countOne++];
         }
-
         while (countTwo < twoArray.length) {
             resultArray[countResult++] = twoArray[countTwo++];
         }

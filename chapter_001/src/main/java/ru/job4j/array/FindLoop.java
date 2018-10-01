@@ -4,6 +4,7 @@ package ru.job4j.array;
  * Классический поиск перебором.
  */
 public class FindLoop {
+
     /**
      * Поиск числа перебором.
      * @param data масси чисел.

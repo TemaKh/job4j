@@ -4,6 +4,7 @@ package ru.job4j.array;
  * Проверяет, что все элементы в массиве являются true или false.
  */
 public class Check {
+
     /**
      * Метод проверяет, что все элементы в массиве являются true или false.
      * @param data массив содержащий true или false.

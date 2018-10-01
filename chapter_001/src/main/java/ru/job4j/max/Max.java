@@ -6,6 +6,7 @@ package ru.job4j.max;
  * @since 0.1
  */
 public class Max {
+
     /**
      * Находит максимум из двух чисел.
      * @param first первое число.

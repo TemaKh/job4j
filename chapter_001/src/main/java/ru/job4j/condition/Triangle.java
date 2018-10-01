@@ -14,6 +14,7 @@ public class Triangle {
         this.b = b;
         this.c = c;
     }
+
     /**
      * Метод вычисления полупериметра по длинам сторон.
      *
@@ -29,13 +30,14 @@ public class Triangle {
     public double period(double ab, double ac, double bc) {
         return (ab + ac + bc) / 2;
     }
+
     /**
      * Метод должен вычислить площадь треугольника.
      *
      * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-        double rsl = -1;  // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том. что треугольника нет.
+        double rsl = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
@@ -45,6 +47,7 @@ public class Triangle {
         }
         return rsl;
     }
+
     /**
      * Метод проверяет можно ли построить треугольник с такими длинами сторон.
      *
