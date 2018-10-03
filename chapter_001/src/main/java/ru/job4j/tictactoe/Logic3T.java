@@ -9,13 +9,13 @@ public class Logic3T {
 
     public boolean isWinnerX() {
         for (int i = 0; i < table.length; i++) {
-            if (table[0][0].hasMarkX() == true && table[1][1].hasMarkX() == true && table[2][2].hasMarkX() == true) {
+            if (table[0][0].hasMarkX() && table[1][1].hasMarkX() && table[2][2].hasMarkX()) {
                 return true;
-            } else if (table[2][0].hasMarkX() == true && table[1][1].hasMarkX() == true && table[0][2].hasMarkX() == true) {
+            } else if (table[2][0].hasMarkX() && table[1][1].hasMarkX() && table[0][2].hasMarkX()) {
                 return true;
-            } else if (table[i][0].hasMarkX() == true && table[i][1].hasMarkX() == true && table[i][2].hasMarkX() == true) {
+            } else if (table[i][0].hasMarkX() && table[i][1].hasMarkX() && table[i][2].hasMarkX()) {
                 return true;
-            } else if (table[0][i].hasMarkX() == true && table[1][i].hasMarkX() == true && table[2][i].hasMarkX() == true) {
+            } else if (table[0][i].hasMarkX() && table[1][i].hasMarkX() && table[2][i].hasMarkX()) {
                 return true;
             }
         }
@@ -24,13 +24,13 @@ public class Logic3T {
 
     public boolean isWinnerO() {
         for (int i = 0; i < table.length; i++) {
-            if (table[0][0].hasMarkX() == false && table[1][1].hasMarkX() == false && table[2][2].hasMarkX() == false) {
+            if (!table[0][0].hasMarkX() && !table[1][1].hasMarkX() && !table[2][2].hasMarkX()) {
                 return true;
-            } else if (table[2][0].hasMarkX() == false && table[1][1].hasMarkX() == false && table[0][2].hasMarkX() == false) {
+            } else if (!table[2][0].hasMarkX() && !table[1][1].hasMarkX() && !table[0][2].hasMarkX()) {
                 return true;
-            } else if (table[i][0].hasMarkX() == false && table[i][1].hasMarkX() == false && table[i][2].hasMarkX() == false) {
+            } else if (!table[i][0].hasMarkX() && !table[i][1].hasMarkX() && !table[i][2].hasMarkX()) {
                 return true;
-            } else if (table[0][i].hasMarkX() == false && table[1][i].hasMarkX() == false && table[2][i].hasMarkX() == false) {
+            } else if (!table[0][i].hasMarkX() && !table[1][i].hasMarkX() && !table[2][i].hasMarkX()) {
                 return true;
             }
         }
@@ -38,14 +38,13 @@ public class Logic3T {
     }
 
     public boolean hasGap() {
-        int counter = 0;
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[i].length; j++) {
-                if (table[i][j].hasMarkX() == false && table[i][j].hasMarkO() == false) {
-                    counter++;
+                if (!table[i][j].hasMarkX() && !table[i][j].hasMarkO()) {
+                   return true;
                 }
             }
         }
-        return counter > 0 ? true : false;
+        return false;
     }
 }
