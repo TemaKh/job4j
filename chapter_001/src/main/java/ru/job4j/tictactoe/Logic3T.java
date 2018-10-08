@@ -8,33 +8,94 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
+        boolean result = true;
         for (int i = 0; i < table.length; i++) {
-            if (table[0][0].hasMarkX() && table[1][1].hasMarkX() && table[2][2].hasMarkX()) {
-                return true;
-            } else if (table[2][0].hasMarkX() && table[1][1].hasMarkX() && table[0][2].hasMarkX()) {
-                return true;
-            } else if (table[i][0].hasMarkX() && table[i][1].hasMarkX() && table[i][2].hasMarkX()) {
-                return true;
-            } else if (table[0][i].hasMarkX() && table[1][i].hasMarkX() && table[2][i].hasMarkX()) {
-                return true;
+            for (int j = 0; j < table.length; j++) {
+                result = true;
+                if (!table[i][j].hasMarkX()) {
+                    result = false;
+                    break;
+                }
+            }
+            if (!result) {
+                for (int j = 0; j < table.length; j++) {
+                    result = true;
+                    if (!table[j][i].hasMarkX()) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result) {
+                    break;
+                }
             }
         }
-        return false;
+        if (!result) {
+            result = true;
+            for (int i = 0; i < table.length; i++) {
+                if (!table[i][i].hasMarkX()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        if (!result) {
+            result = true;
+            for (int i = table.length - 1, j = 0; i > 0; i--, j++) {
+                if (!table[j][i].hasMarkX()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     public boolean isWinnerO() {
+        boolean result = true;
         for (int i = 0; i < table.length; i++) {
-            if (!table[0][0].hasMarkX() && !table[1][1].hasMarkX() && !table[2][2].hasMarkX()) {
-                return true;
-            } else if (!table[2][0].hasMarkX() && !table[1][1].hasMarkX() && !table[0][2].hasMarkX()) {
-                return true;
-            } else if (!table[i][0].hasMarkX() && !table[i][1].hasMarkX() && !table[i][2].hasMarkX()) {
-                return true;
-            } else if (!table[0][i].hasMarkX() && !table[1][i].hasMarkX() && !table[2][i].hasMarkX()) {
-                return true;
+            for (int j = 0; j < table.length; j++) {
+                result = true;
+                if (!table[i][j].hasMarkO()) {
+                    result = false;
+                    break;
+                }
+            }
+            if (result) {
+                break;
+            }
+            if (!result) {
+                for (int j = 0; j < table.length; j++) {
+                    result = true;
+                    if (!table[j][i].hasMarkO()) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result) {
+                    break;
+                }
             }
         }
-        return false;
+        if (!result) {
+            result = true;
+            for (int i = 0; i < table.length; i++) {
+                if (!table[i][i].hasMarkO()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        if (!result) {
+            result = true;
+            for (int i = table.length - 1, j = 0; i > 0; i--, j++) {
+                if (!table[j][i].hasMarkO()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     public boolean hasGap() {
