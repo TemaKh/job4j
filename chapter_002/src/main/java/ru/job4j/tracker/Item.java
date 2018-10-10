@@ -12,6 +12,11 @@ public class Item {
         this.create = create;
     }
 
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }
@@ -30,5 +35,11 @@ public class Item {
 
     public long getCreate() {
         return create;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", description='" + description
+                + '\'' + ", create=" + create + '}';
     }
 }
