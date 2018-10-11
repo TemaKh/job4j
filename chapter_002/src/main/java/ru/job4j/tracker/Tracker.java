@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -11,7 +12,7 @@ public class Tracker {
     /**
      * Указатель ячейки для новой заявки.
      */
-    private int position = 0;
+    private int position;
 
     private static final Random RN = new Random();
 
@@ -39,26 +40,31 @@ public class Tracker {
      * @param id .
      * @param item .
      */
-    public void replace(String id, Item item) {
-        for (int index = 0; index != this.position; index++) {
+    public boolean replace(String id, Item item) {
+        for (int index = 0; index < this.position; index++) {
             if (this.items[index].getId().equals(id)) {
+                item.setId(id);
                 this.items[index] = item;
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     /**
      * Метод  удаляет ячейку в массиве this.items по заданному id.
      * @param id удаляемого элемента.
      */
-    public void delete(String id) {
-        for (int index = 0; index != this.position; index++) {
-            if (this.items[index].equals(id)) {
+    public boolean delete(String id) {
+        for (int index = 0; index < this.position; index++) {
+            if (this.items[index].getId().equals(id)) {
                 System.arraycopy(this.items, index + 1, this.items, index, this.items.length - 1 - index);
                 this.items[this.items.length - 1] = null;
+                this.position--;
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -66,11 +72,7 @@ public class Tracker {
      * @return возвращает копию массива this.items без null элементов.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
@@ -82,19 +84,13 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int counter = 0;
-        int resPosistion = 0;
-        for (int index = 0; index != this.position; index++) {
+        Item[] result = new Item[this.position];
+        for (int index = 0; index < this.position; index++) {
             if (this.items[index].getName().equals(key)) {
-                counter++;
+                result[counter++] = this.items[index];
             }
         }
-        Item[] result = new Item[counter];
-        for (int index = 0; index != this.position; index++) {
-            if (this.items[index].getName().equals(key)) {
-                result[resPosistion++] = this.items[index];
-            }
-        }
-        return result;
+        return Arrays.copyOf(result, counter);
     }
 
     /**

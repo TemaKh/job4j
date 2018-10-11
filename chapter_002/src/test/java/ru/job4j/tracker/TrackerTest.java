@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
@@ -36,15 +37,10 @@ public class TrackerTest {
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription", 123L);
-        // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
-        // Создаем новую заявку.
         Item next = new Item("test2", "testDescription", 1234L);
-        // Проставляем старый id из previous, который был сгенерирован выше.
         next.setId(previous.getId());
-        // Обновляем заявку в трекере.
         tracker.replace(previous.getId(), next);
-        // Проверяем, что заявка с таким id имеет новые имя test2.
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
 
@@ -59,7 +55,6 @@ public class TrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         tracker.delete(item2.getId());
-        item2 = null;
-        assertThat(tracker.findById(iditem2), is(item2));
+        assertNull(tracker.findById(iditem2));
     }
 }

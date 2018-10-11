@@ -66,21 +66,15 @@ public class StartUI {
             if (ADD.equals(answer)) {
                 this.createItem();
             } else if (SHOW_ALL.equals(answer)) {
-                Item[] items = tracker.findAll();
-                for (Item item : items) {
-                    System.out.println(item.toString());
-                }
+                this.showAllItems();
             } else if (EDIT.equals(answer)) {
                 this.editItem();
             } else if (DELETE.equals(answer)) {
-                tracker.delete(this.input.ask("Введите ID заявки: "));
+                this.deleteItem();
             } else if (FIND_BY_ID.equals(answer)) {
-                System.out.println(tracker.findById(this.input.ask("Введите ID заявки: ")).toString());
+                this.findItemById();
             } else if (FIND_BY_NAME.equals(answer)) {
-                Item[] items = tracker.findByName(this.input.ask("Введите Имя заявки: "));
-                for (Item item : items) {
-                    System.out.println(item.toString());
-                }
+                this.findItemsByName();
             } else if (EXIT.equals(answer)) {
                 exit = true;
             }
@@ -100,6 +94,16 @@ public class StartUI {
     }
 
     /**
+     * Метод показывает все заявки в хранилище.
+     */
+    private void showAllItems() {
+        Item[] items = tracker.findAll();
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
+    }
+
+    /**
      * Метод заменяет существующую заявку на новую в хранилище.
      */
     private void editItem() {
@@ -111,6 +115,37 @@ public class StartUI {
         this.tracker.replace(id, item);
         System.out.println("--- Существующая заявка с Id : " + id
                 + ". Была заменена на новую заявку с Id : " + item.getId() +  " ---");
+        if (!this.tracker.replace(id, item)) {
+            System.out.println("Данной заявки нет в хранилище, замена не произведена.");
+        }
+    }
+
+    /**
+     * Метод удаляет заявку из хранилища.
+     */
+    private void deleteItem() {
+        String id = this.input.ask("Введите ID заявки: ");
+        this.tracker.delete(id);
+        if (!this.tracker.delete(id)) {
+            System.out.println("Данной заявки нет в хранилище, удаление не произведено.");
+        }
+    }
+
+    /**
+     * Метод ищет заявку в хранилище по ID.
+     */
+    private void findItemById() {
+        System.out.println(tracker.findById(this.input.ask("Введите ID заявки: ")).toString());
+    }
+
+    /**
+     * Метод ищет по имени все совпадения заявок в хранилище.
+     */
+    private void findItemsByName() {
+        Item[] items = tracker.findByName(this.input.ask("Введите Имя заявки: "));
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
     }
 
     private void showMenu() {
@@ -126,7 +161,7 @@ public class StartUI {
 
     /**
      * Запускт программы.
-     * @param args
+     * @param args .
      */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
