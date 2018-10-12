@@ -112,10 +112,10 @@ public class StartUI {
         String name = this.input.ask("Введите имя новой заявки: ");
         String desc = this.input.ask("Введите описание новой заявки: ");
         Item item = new Item(name, desc);
-        this.tracker.replace(id, item);
-        System.out.println("--- Существующая заявка с Id : " + id
-                + ". Была заменена на новую заявку с Id : " + item.getId() +  " ---");
         if (!this.tracker.replace(id, item)) {
+            System.out.println("--- Существующая заявка с Id : " + id
+                    + ". Была заменена на новую заявку с Id : " + item.getId() + " ---");
+        } else {
             System.out.println("Данной заявки нет в хранилище, замена не произведена.");
         }
     }
@@ -125,7 +125,6 @@ public class StartUI {
      */
     private void deleteItem() {
         String id = this.input.ask("Введите ID заявки: ");
-        this.tracker.delete(id);
         if (!this.tracker.delete(id)) {
             System.out.println("Данной заявки нет в хранилище, удаление не произведено.");
         }
