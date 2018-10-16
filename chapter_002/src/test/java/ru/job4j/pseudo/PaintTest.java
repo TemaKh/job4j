@@ -13,12 +13,13 @@ public class PaintTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         new Paint().draw(new Square());
+        String ls = System.lineSeparator();
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
-                .append("++++\n")
-                .append("++++\n")
-                .append("++++\n")
-                .append("++++\n")
-                .append(System.lineSeparator())
+                .append("++++").append(ls)
+                .append("++++").append(ls)
+                .append("++++").append(ls)
+                .append("++++").append(ls)
+                .append(ls)
                 .toString()
         )
         );
@@ -31,11 +32,12 @@ public class PaintTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         new Paint().draw(new Triangle());
+        String ls = System.lineSeparator();
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
-                        .append("  +  \n")
-                        .append(" +++ \n")
-                        .append("+++++\n")
-                        .append(System.lineSeparator())
+                        .append("  +  ").append(ls)
+                        .append(" +++ ").append(ls)
+                        .append("+++++").append(ls)
+                        .append(ls)
                         .toString()
                 )
         );
