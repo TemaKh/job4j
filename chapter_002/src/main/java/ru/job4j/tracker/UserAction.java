@@ -9,10 +9,8 @@ public interface UserAction {
 
     /**
      * Основной метод.
-     * @param input объект типа Input
-     * @param tracker объект типа Tracker
      */
-     void execute(Input input, Tracker tracker);
+     void execute();
     /**
      * Метод возвращает информацию о данном пункте меню.
      * @return Строка меню

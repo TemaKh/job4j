@@ -38,4 +38,12 @@ public class StartUI {
             }
         }
     }
+
+    /**
+     * Запускт программы.
+     * @param args
+     */
+    public static void main(String[] args) {
+        new StartUI(new ConsoleInput(), new Tracker()).init();
+    }
 }
