@@ -33,7 +33,11 @@ public class MenuTracker {
          return this.actions.size();
      }
 
-     public class AddNewItem implements UserAction {
+    public int getActionsKey(int index) {
+        return actions.get(index).key();
+    }
+
+    public class AddNewItem implements UserAction {
          private int key;
          private String name;
 

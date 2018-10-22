@@ -28,12 +28,16 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
+        int[] range = new int[menu.getActionsLength()];
+        for (int index = 0; index < range.length; index++) {
+            range[index] = menu.getActionsKey(index);
+        }
         boolean exit = false;
         while (!exit) {
             menu.show();
-            String answer = this.input.ask("Select item menu: ");
-            menu.select(Integer.parseInt(answer));
-             if (answer.equals("6")) {
+            int answer = this.input.ask("Select item menu: ", range);
+            menu.select(answer);
+             if (answer == 6) {
                 exit = true;
             }
         }
@@ -44,6 +48,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }

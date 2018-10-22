@@ -37,6 +37,18 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-        return 0;
+        boolean invalid = true;
+        int value = -1;
+        do {
+            try {
+                value = Integer.parseInt(this.value[this.position++]);
+                invalid = false;
+            } catch (MenuOutException moe) {
+                System.out.println("Пожалуйста введите значения из диапазона меню");
+            } catch (NumberFormatException nfe) {
+                System.out.println("Пожалуйста ввидите корректное значение");
+            }
+        } while (invalid);
+        return value;
     }
 }
