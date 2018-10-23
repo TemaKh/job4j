@@ -30,4 +30,11 @@ public class ValidateInputTest {
         input.ask("Enter", new int[] {1});
         assertThat(this.mem.toString(), is(String.format("Пожалуйста ввидите корректное значение%n")));
     }
+
+    @Test
+    public void whenInvalidKeyInput() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"0", "1"}));
+        input.ask("0", new int[] {1});
+        assertThat(this.mem.toString(), is(String.format("Пожалуйста введите значения из диапазона меню%n")));
+    }
 }
