@@ -7,6 +7,8 @@ public class StartUI {
      */
     private final Input input;
 
+    private boolean working = true;
+
     /**
      * Хранилище заявок.
      */
@@ -22,24 +24,24 @@ public class StartUI {
         this.tracker = tracker;
     }
 
+    public void stop() {
+        this.working = false;
+    }
+
     /**
      * Основой цикл программы.
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        menu.fillActions(this);
         int[] range = new int[menu.getActionsLength()];
         for (int index = 0; index < range.length; index++) {
             range[index] = menu.getActionsKey(index);
         }
-        boolean exit = false;
-        while (!exit) {
+        while (this.working) {
             menu.show();
             int answer = this.input.ask("Select item menu: ", range);
             menu.select(answer);
-             if (answer == 6) {
-                exit = true;
-            }
         }
     }
 

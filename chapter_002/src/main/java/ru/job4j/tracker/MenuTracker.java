@@ -116,7 +116,13 @@ public class MenuTracker {
 
         @Override
         public void execute() {
-            System.out.println(tracker.findById(input.ask("Введите ID заявки: ")).toString());
+            String id = input.ask("Введите ID заявки: ");
+            Item result = tracker.findById(id);
+            if (result != null) {
+                System.out.println(result.toString());
+            } else {
+                System.out.printf("Заявки с id: %s не найдено%n", id);
+            }
         }
     }
 
@@ -138,27 +144,30 @@ public class MenuTracker {
 
     public class ExitProgram extends BaseAction {
 
-        public ExitProgram(int key, String name) {
+        private final StartUI ui;
+
+        public ExitProgram(int key, String name, StartUI ui) {
             super(key, name);
+            this.ui = ui;
         }
 
         @Override
         public void execute() {
-
+            this.ui.stop();
         }
     }
 
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddNewItem(0, "Add new Item"));
         this.actions.add(new ShowAllItems(1, "Show all items"));
         this.actions.add(new EditItem(2, "Edit item"));
         this.actions.add(new DeleteItem(3, "Delete item"));
         this.actions.add(new FindItemById(4, "Find item by Id"));
         this.actions.add(new FindItemsByName(5, "Find items by name"));
-        this.actions.add(new ExitProgram(6, "Exit Program"));
+        this.actions.add(new ExitProgram(6, "Exit Program", ui));
     }
 
     /**
