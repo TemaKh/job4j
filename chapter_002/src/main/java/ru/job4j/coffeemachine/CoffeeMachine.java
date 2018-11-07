@@ -1,4 +1,4 @@
-package ru.job4j.сoffeemachine;
+package ru.job4j.coffeemachine;
 
 import java.util.Arrays;
 
