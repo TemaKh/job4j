@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -7,12 +8,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position;
+    private final ArrayList<Item> items = new ArrayList<>();
 
     private static final Random RN = new Random();
 
@@ -22,7 +18,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -41,10 +37,10 @@ public class Tracker {
      * @param item .
      */
     public boolean replace(String id, Item item) {
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getId().equals(id)) {
+        for (Item itemreplace : this.items) {
+            if (itemreplace.getId().equals(id)) {
                 item.setId(id);
-                this.items[index] = item;
+                this.items.set(items.indexOf(itemreplace), item);
                 return true;
             }
         }
@@ -56,11 +52,9 @@ public class Tracker {
      * @param id удаляемого элемента.
      */
     public boolean delete(String id) {
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getId().equals(id)) {
-                System.arraycopy(this.items, index + 1, this.items, index, this.items.length - 1 - index);
-                this.items[this.items.length - 1] = null;
-                this.position--;
+        for (Item itemdelete : this.items) {
+            if (itemdelete.getId().equals(id)) {
+                this.items.remove(items.indexOf(itemdelete));
                 return true;
             }
         }
@@ -71,8 +65,8 @@ public class Tracker {
      * Метод возвращает копию массива this.items без null элементов.
      * @return возвращает копию массива this.items без null элементов.
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public ArrayList<Item> findAll() {
+        return this.items;
     }
 
     /**
@@ -82,15 +76,14 @@ public class Tracker {
      * @param key имя которое нужно найти.
      * @return результирующий массив.
      */
-    public Item[] findByName(String key) {
-        int counter = 0;
-        Item[] result = new Item[this.position];
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getName().equals(key)) {
-                result[counter++] = this.items[index];
+    public ArrayList<Item> findByName(String key) {
+       ArrayList<Item> result = new ArrayList<>();
+        for (Item itemname : this.items) {
+            if (itemname.getName().equals(key)) {
+                result.add(itemname);
             }
         }
-        return Arrays.copyOf(result, counter);
+        return result;
     }
 
     /**

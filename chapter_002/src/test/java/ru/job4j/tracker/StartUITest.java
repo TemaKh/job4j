@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertThat;
@@ -51,7 +52,7 @@ public class StartUITest {
         assertThat(new String(this.out.toByteArray()), is(new StringBuilder(this.menu())
                 .append("------------ Добавление новой заявки --------------").append(this.ls)
                 .append("------------ Новая заявка с Id : ")
-                .append(tracker.findAll()[0].getId()) .append("-----------")
+                .append(tracker.findAll().get(0).getId()) .append("-----------")
                 .append(this.ls)
                 .append(this.menu()).toString()
         ));
@@ -90,7 +91,7 @@ public class StartUITest {
             tracker.add(new Item("test name" + i, "desc" + i));
         }
         StringBuilder showall = new StringBuilder(this.menu());
-        Item[] items = tracker.findAll();
+        ArrayList<Item> items = tracker.findAll();
         for (Item item : items) {
             showall.append(item.toString()).append(this.ls);
         }
@@ -118,7 +119,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name", "desc1"));
         StringBuilder findbyname = new StringBuilder(this.menu());
-        Item[] items = tracker.findByName(item.getName());
+        ArrayList<Item> items = tracker.findByName(item.getName());
         for (Item vararray : items) {
             findbyname.append(vararray.toString()).append(this.ls);
         }

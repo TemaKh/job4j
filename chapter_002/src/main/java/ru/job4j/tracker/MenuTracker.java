@@ -62,7 +62,7 @@ public class MenuTracker {
 
         @Override
         public void execute() {
-            Item[] items = tracker.findAll();
+            ArrayList<Item> items = tracker.findAll();
             for (Item item : items) {
                 System.out.println(item.toString());
             }
@@ -134,7 +134,7 @@ public class MenuTracker {
 
         @Override
         public void execute() {
-            Item[] items = tracker.findByName(input.ask("Введите Имя заявки: "));
+            ArrayList<Item> items = tracker.findByName(input.ask("Введите Имя заявки: "));
             for (Item item : items) {
                 System.out.println(item.toString());
             }
