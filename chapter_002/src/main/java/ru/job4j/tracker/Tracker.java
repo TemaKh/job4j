@@ -2,13 +2,14 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     private static final Random RN = new Random();
 
@@ -37,12 +38,14 @@ public class Tracker {
      * @param item .
      */
     public boolean replace(String id, Item item) {
+        int i = 0;
         for (Item itemreplace : this.items) {
             if (itemreplace.getId().equals(id)) {
                 item.setId(id);
-                this.items.set(items.indexOf(itemreplace), item);
+                this.items.set(i, item);
                 return true;
             }
+            i++;
         }
         return false;
     }
@@ -52,11 +55,13 @@ public class Tracker {
      * @param id удаляемого элемента.
      */
     public boolean delete(String id) {
+        int i = 0;
         for (Item itemdelete : this.items) {
             if (itemdelete.getId().equals(id)) {
-                this.items.remove(items.indexOf(itemdelete));
+                this.items.remove(i);
                 return true;
             }
+            i++;
         }
         return false;
     }
@@ -65,7 +70,7 @@ public class Tracker {
      * Метод возвращает копию массива this.items без null элементов.
      * @return возвращает копию массива this.items без null элементов.
      */
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return this.items;
     }
 
@@ -76,8 +81,8 @@ public class Tracker {
      * @param key имя которое нужно найти.
      * @return результирующий массив.
      */
-    public ArrayList<Item> findByName(String key) {
-       ArrayList<Item> result = new ArrayList<>();
+    public List<Item> findByName(String key) {
+       List<Item> result = new ArrayList<>();
         for (Item itemname : this.items) {
             if (itemname.getName().equals(key)) {
                 result.add(itemname);

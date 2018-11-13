@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -91,7 +92,7 @@ public class StartUITest {
             tracker.add(new Item("test name" + i, "desc" + i));
         }
         StringBuilder showall = new StringBuilder(this.menu());
-        ArrayList<Item> items = tracker.findAll();
+        List<Item> items = tracker.findAll();
         for (Item item : items) {
             showall.append(item.toString()).append(this.ls);
         }
@@ -119,7 +120,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc"));
         Item item1 = tracker.add(new Item("test name", "desc1"));
         StringBuilder findbyname = new StringBuilder(this.menu());
-        ArrayList<Item> items = tracker.findByName(item.getName());
+        List<Item> items = tracker.findByName(item.getName());
         for (Item vararray : items) {
             findbyname.append(vararray.toString()).append(this.ls);
         }
