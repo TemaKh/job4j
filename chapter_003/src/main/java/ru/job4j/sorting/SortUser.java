@@ -18,19 +18,17 @@ public class SortUser {
     }
 
     public List<User> sortByAllFields(List<User> list) {
-        Comparator<User> byName = new Comparator<User>() {
+        Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
-                return o1.getName().compareTo(o2.getName());
+                int i = o1.getName().compareTo(o2.getName());
+                if (i == 0) {
+                    return o1.compareTo(o2);
+                } else {
+                    return i;
+                }
             }
-        };
-        Comparator<User> byAge = new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.compareTo(o2);
-            }
-        };
-        Collections.sort(list, byName.thenComparing(byAge));
+        });
         return list;
     }
 }
