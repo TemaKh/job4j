@@ -21,7 +21,11 @@ public class Bank {
      * @param user пользователь.
      */
     public void deleteUser(User user) {
-        this.bankAccounts.remove(user);
+        if (user != null) {
+            this.bankAccounts.remove(user);
+        } else {
+            System.out.println("Такого пользователя не существует.");
+        }
     }
 
     /**
@@ -30,7 +34,12 @@ public class Bank {
      * @param account счет.
      */
     public void addAccountToUser(String passport, Account account) {
-        this.bankAccounts.get(findUser(passport)).add(account);
+        User user = findUser(passport);
+        if (user != null) {
+            this.bankAccounts.get(user).add(account);
+        } else {
+            System.out.println("Такого пользователя не существует.");
+        }
     }
 
     /**
@@ -39,7 +48,12 @@ public class Bank {
      * @param account счет.
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        this.bankAccounts.get(findUser(passport)).remove(account);
+        User user = findUser(passport);
+        if (user != null) {
+            this.bankAccounts.get(findUser(passport)).remove(account);
+        } else {
+            System.out.println("Такого пользователя не существует.");
+        }
     }
 
     /**
@@ -48,7 +62,12 @@ public class Bank {
      * @return список счетов пользователя.
      */
     public List<Account> getUserAccounts(String passport) {
-        return this.bankAccounts.get(findUser(passport));
+        User user = findUser(passport);
+        if (user != null) {
+            return this.bankAccounts.get(findUser(passport));
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     /**
