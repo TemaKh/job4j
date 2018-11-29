@@ -39,7 +39,7 @@ public class StartUI {
             range[index] = menu.getActionsKey(index);
         }
         while (this.working) {
-            menu.show();
+            menu.show(str -> System.out.println(str));
             int answer = this.input.ask("Select item menu: ", range);
             menu.select(answer);
         }
