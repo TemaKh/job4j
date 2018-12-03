@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Tracker {
     /**
@@ -71,7 +72,7 @@ public class Tracker {
      * @return возвращает копию массива this.items без null элементов.
      */
     public List<Item> findAll() {
-        return this.items;
+        return this.items.stream().collect(Collectors.toList());
     }
 
     /**
@@ -82,13 +83,7 @@ public class Tracker {
      * @return результирующий массив.
      */
     public List<Item> findByName(String key) {
-       List<Item> result = new ArrayList<>();
-        for (Item itemname : this.items) {
-            if (itemname.getName().equals(key)) {
-                result.add(itemname);
-            }
-        }
-        return result;
+        return items.stream().filter(itemName -> itemName.getName().equals(key)).collect(Collectors.toList());
     }
 
     /**
