@@ -7,33 +7,29 @@ public class Converter {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         return new Iterator<Integer>() {
             Iterator<Integer> iterator = it.next();
-            boolean result = iterator.hasNext();
-            int value = 0;
             @Override
             public boolean hasNext() {
-                if (!result) {
-                    return false;
+                boolean result = false;
+                if (iterator.hasNext()) {
+                    result = true;
+                } else {
+                    while (it.hasNext()) {
+                        iterator = it.next();
+                        result = iterator.hasNext();
+                        if (result) {
+                            break;
+                        }
+                    }
                 }
-                return it.hasNext() || iterator.hasNext();
+                return result;
             }
 
             @Override
             public Integer next() {
-                if (iterator.hasNext()) {
-                    value = iterator.next();
-                } else {
-                    while (it.hasNext()) {
-                        iterator = it.next();
-                        if (iterator.hasNext()) {
-                            value = iterator.next();
-                            break;
-                        }
-                    }
                     if (!hasNext()) {
                         throw new NoSuchElementException();
                     }
-                }
-                return value;
+                return iterator.next();
             }
         };
     }
