@@ -7,10 +7,14 @@ public class Converter {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         return new Iterator<Integer>() {
             Iterator<Integer> iterator = it.next();
+            boolean result = iterator.hasNext();
             int value = 0;
             @Override
             public boolean hasNext() {
-                return iterator.hasNext();
+                if (!result) {
+                    return false;
+                }
+                return it.hasNext() || iterator.hasNext();
             }
 
             @Override
