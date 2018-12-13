@@ -44,7 +44,7 @@ public class SimpleArrayTest {
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void invocationAddMethodShouldThrowArrayIndexOutOfBoundsException() {
-        simpleArray.get(5);
+        simpleArray.add(5);
     }
 
     @Test
