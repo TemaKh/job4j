@@ -27,6 +27,7 @@ public class SimpleArrayList<E> {
         }
         Node<E> temp = first;
         this.first = this.first.next;
+        this.size--;
         return temp.date;
     }
 
