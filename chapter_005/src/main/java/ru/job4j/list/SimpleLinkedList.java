@@ -26,6 +26,16 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result.date;
     }
 
+    public E delete() {
+        if (first == null) {
+            return null;
+        }
+        Node<E> temp = this.first;
+        this.first = this.first.next;
+        this.size--;
+        return temp.date;
+    }
+
     private static class Node<E> {
 
         E date;
