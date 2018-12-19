@@ -23,4 +23,21 @@ public class SimpleQueueTest {
         assertThat(queue.poll(), is(2));
         assertThat(queue.poll(), is(3));
     }
+
+    @Test
+    public void whenPushPoll() {
+        queue.push(4);
+        assertThat(queue.poll(), is(1));
+        queue.push(5);
+        assertThat(queue.poll(), is(2));
+        queue.push(6);
+        assertThat(queue.poll(), is(3));
+        queue.push(7);
+        assertThat(queue.poll(), is(4));
+        queue.push(8);
+        assertThat(queue.poll(), is(5));
+        assertThat(queue.poll(), is(6));
+        assertThat(queue.poll(), is(7));
+        assertThat(queue.poll(), is(8));
+    }
 }

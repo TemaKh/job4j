@@ -4,7 +4,6 @@ public class SimpleQueue<T> {
     private SimpleStack<T> firstStack;
     private SimpleStack<T> secondStack;
     private int count;
-    private int callPoll;
 
     public SimpleQueue() {
         firstStack = new SimpleStack<>();
@@ -17,12 +16,14 @@ public class SimpleQueue<T> {
     }
 
     public T poll() {
-        callPoll++;
-        if (callPoll == 1) {
-            for (int i = 0; i < count; i++) {
-                secondStack.push(firstStack.poll());
-            }
+        for (int i = count; i > 0; i--) {
+            secondStack.push(firstStack.poll());
         }
-        return secondStack.poll();
+        T result = secondStack.poll();
+        count--;
+        for (int i = 0; i < count; i++) {
+            firstStack.push(secondStack.poll());
+        }
+        return result;
     }
 }
