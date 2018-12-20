@@ -36,6 +36,10 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return temp.date;
     }
 
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
+
     private static class Node<E> {
 
         E date;

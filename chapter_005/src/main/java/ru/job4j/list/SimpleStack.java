@@ -20,4 +20,8 @@ public class SimpleStack<T> {
     public T poll() {
         return stack.delete();
     }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
 }
