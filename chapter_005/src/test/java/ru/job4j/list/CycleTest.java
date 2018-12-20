@@ -29,4 +29,13 @@ public class CycleTest {
     public void whenHasCycleThenTrue() {
         assertThat(Cycle.hasCycle(first), is(true));
     }
+
+    @Test
+    public void whenHasNoCycleThenFalse() {
+        first.next = two;
+        two.next = third;
+        third.next = four;
+        four.next = null;
+        assertThat(Cycle.hasCycle(first), is(false));
+    }
 }
