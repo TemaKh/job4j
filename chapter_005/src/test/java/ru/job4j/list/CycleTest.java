@@ -11,6 +11,7 @@ public class CycleTest {
     private Node<Integer> two;
     private Node<Integer> third;
     private Node<Integer> four;
+    private Node<Integer> five;
 
     @Before
     public void setUp() {
@@ -18,6 +19,7 @@ public class CycleTest {
         two = new Node<>(2);
         third = new Node<>(3);
         four = new Node<>(4);
+        five = new Node<>(5);
 
         first.next = two;
         two.next = third;
@@ -35,7 +37,8 @@ public class CycleTest {
         first.next = two;
         two.next = third;
         third.next = four;
-        four.next = null;
+        four.next = five;
+        five.next = null;
         assertThat(Cycle.hasCycle(first), is(false));
     }
 }
