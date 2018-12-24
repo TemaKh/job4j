@@ -10,8 +10,11 @@ public class MapTest {
     @Test
     public void whenEqualsAndHashCodeNorOverriding() {
         Map<User, Object> map = new HashMap<>();
-        map.put(new User("Tom", 0, new GregorianCalendar(1995, 4, 20)), new Object());
-        map.put(new User("Tom", 0, new GregorianCalendar(1995, 4, 20)), new Object());
+        User user1 = new User("Tom", 0, new GregorianCalendar(1995, 4, 20));
+        User user2 = new User("Tom", 0, new GregorianCalendar(1995, 4, 20));
+        map.put(user1 , new Object());
+        map.put(user2, new Object());
+        System.out.println(user1.equals(user2));
         System.out.println(map);
     }
 }
