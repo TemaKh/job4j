@@ -56,9 +56,9 @@ public class AssociativeArrayTest {
     @Test
     public void whenIteratorReturnValue() {
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next(), is(2));
+        iterator.next();
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next(), is(1));
+        iterator.next();
         assertThat(iterator.hasNext(), is(false));
     }
 
