@@ -24,7 +24,7 @@ public class AssociativeArrayTest {
         associativeArray = new AssociativeArray<>();
         user1 = new User("Tom", 0, new GregorianCalendar(1995, 4, 20));
         user2 = new User("Kate", 1, new GregorianCalendar(1990, 7, 23));
-        user3 = new User("Anton", 4, new GregorianCalendar(1977, 1, 15));
+        user3 = new User("Anton", 4, new GregorianCalendar(1967, 11, 13));
         user4 = new User("Roma", 1, new GregorianCalendar(1997, 8, 6));
         user5 = new User("Petr", 1, new GregorianCalendar(1987, 5, 17));
         user6 = new User("Artur", 2, new GregorianCalendar(1980, 10, 27));
