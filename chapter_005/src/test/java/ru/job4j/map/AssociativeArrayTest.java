@@ -39,14 +39,6 @@ public class AssociativeArrayTest {
     }
 
     @Test
-    public void whenAddItemsLargerThanDefaultCapacity() {
-        assertThat(associativeArray.insert(user3, 3), is(true));
-        assertThat(associativeArray.insert(user4, 4), is(true));
-        assertThat(associativeArray.insert(user5, 5), is(true));
-        assertThat(associativeArray.insert(user6, 6), is(true));
-    }
-
-    @Test
     public void whenKeysMatch() {
         associativeArray.insert(user1, 3);
         assertThat(associativeArray.get(user1), is(3));

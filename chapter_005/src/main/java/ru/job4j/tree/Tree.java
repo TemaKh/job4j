@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private Node<E> root;
-    private List<Node<E>> listAllNode = new LinkedList<>();
 
     public Tree(E value) {
         this.root = new Node<>(value);
@@ -38,21 +37,35 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return rsl;
     }
 
-    private List<Node<E>> listAllElementTree(Node<E> node) {
-        listAllNode.add(node);
-        for (Node<E> child : node.leaves()) {
-            if (child.leaves().size() > 0) {
-                listAllElementTree(child);
-            } else {
-                listAllNode.add(child);
-            }
-        }
-        return listAllNode;
-    }
-
     @Override
     public Iterator<Node<E>> iterator() {
-        return listAllElementTree(root).iterator();
+        return new Iterator<Node<E>>() {
+            List<Node<E>> listAllNode = new LinkedList<>();
+
+            private List<Node<E>> listAllElementTree(Node<E> node) {
+                listAllNode.add(node);
+                for (Node<E> child : node.leaves()) {
+                    if (child.leaves().size() > 0) {
+                        listAllElementTree(child);
+                    } else {
+                        listAllNode.add(child);
+                    }
+                }
+                return listAllNode;
+            }
+
+            Iterator<Node<E>> iterator = listAllElementTree(root).iterator();
+
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
+
+            @Override
+            public Node<E> next() {
+                return iterator.next();
+            }
+        };
     }
 
     public boolean isBinary() {
