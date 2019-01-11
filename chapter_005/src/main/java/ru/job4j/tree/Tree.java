@@ -38,32 +38,22 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     @Override
-    public Iterator<Node<E>> iterator() {
-        return new Iterator<Node<E>>() {
-            List<Node<E>> listAllNode = new LinkedList<>();
-
-            private List<Node<E>> listAllElementTree(Node<E> node) {
-                listAllNode.add(node);
-                for (Node<E> child : node.leaves()) {
-                    if (child.leaves().size() > 0) {
-                        listAllElementTree(child);
-                    } else {
-                        listAllNode.add(child);
-                    }
-                }
-                return listAllNode;
-            }
-
-            Iterator<Node<E>> iterator = listAllElementTree(root).iterator();
-
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            Queue<Node<E>> listAllNode = new LinkedList<>(Collections.singleton(root));
             @Override
             public boolean hasNext() {
-                return iterator.hasNext();
+                return !listAllNode.isEmpty();
             }
 
             @Override
-            public Node<E> next() {
-                return iterator.next();
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                Node<E> node = listAllNode.poll();
+                listAllNode.addAll(node.leaves());
+                return node.getValue();
             }
         };
     }

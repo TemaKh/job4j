@@ -37,25 +37,25 @@ public class TreeTest {
         tree.add(6, 7);
         tree.add(5, 8);
         tree.add(8, 9);
-        Iterator<Node<Integer>> iterator = tree.iterator();
+        Iterator<Integer> iterator = tree.iterator();
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(1));
+        assertThat(iterator.next(), is(1));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(2));
+        assertThat(iterator.next(), is(2));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(3));
+        assertThat(iterator.next(), is(5));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(4));
+        assertThat(iterator.next(), is(3));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(5));
+        assertThat(iterator.next(), is(6));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(6));
+        assertThat(iterator.next(), is(8));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(7));
+        assertThat(iterator.next(), is(4));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(8));
+        assertThat(iterator.next(), is(7));
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next().getValue(), is(9));
+        assertThat(iterator.next(), is(9));
         assertThat(iterator.hasNext(), is(false));
     }
 
