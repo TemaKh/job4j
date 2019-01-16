@@ -1,6 +1,7 @@
 package ru.job4j.compare;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class CompareString {
 
@@ -11,17 +12,33 @@ public class CompareString {
      * @param str2 second string.
      * @return true or false.
      */
-    public static boolean stringEquality(String str1, String str2) {
+    public boolean stringEquality(String str1, String str2) {
         if (str1.length() != str2.length()) {
             return false;
         }
-        return sort(str1).equals(sort(str2));
-    }
+        HashMap<Character, Integer> map = new HashMap<>();
+        int count = 1;
+        for (Character ch1 : str1.toCharArray()) {
+            if (!map.containsKey(ch1)) {
+                map.put(ch1, count);
+            } else {
+                map.put(ch1, count + 1);
+            }
+        }
 
-    private static String sort(String str) {
-        char[] charArray = str.toCharArray();
-        Arrays.sort(charArray);
-        return new String(charArray);
+        for (Character ch2 : str2.toCharArray()) {
+            if (!map.containsKey(ch2)) {
+                return false;
+            }
+            if (map.containsKey(ch2)) {
+                map.put(ch2, map.get(ch2) - 1);
+            }
+            if (map.get(ch2).equals(0)) {
+                map.remove(ch2);
+            }
+        }
+
+        return map.isEmpty();
     }
 
     /**
@@ -30,7 +47,7 @@ public class CompareString {
      * @param str2 second string.
      * @return true or false.
      */
-    public static boolean ifOneCharacterTransposition(String str1, String str2) {
+    public boolean ifOneCharacterTransposition(String str1, String str2) {
         boolean result = false;
         if (str1.length() != str2.length()) {
             return result;
