@@ -11,14 +11,14 @@ public class RectangleMove implements Runnable {
 
     @Override
     public void run() {
-        while ((true)) {
-            while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
+            while (!Thread.currentThread().isInterrupted()) {
                 this.rect.setX(this.rect.getX() + 1);
                 this.rect.setY(this.rect.getY() - 1);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (this.rect.getY() == 0) {
                     break;
@@ -26,13 +26,13 @@ public class RectangleMove implements Runnable {
             }
             this.rect.setX(150);
             this.rect.setY(0);
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 this.rect.setX(this.rect.getX() + 1);
                 this.rect.setY(this.rect.getY() + 1);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (this.rect.getX() == 300) {
                     break;
@@ -40,13 +40,13 @@ public class RectangleMove implements Runnable {
             }
             this.rect.setX(300);
             this.rect.setY(150);
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 this.rect.setX(this.rect.getX() - 1);
                 this.rect.setY(this.rect.getY() + 1);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (this.rect.getX() == 150) {
                     break;
@@ -54,13 +54,13 @@ public class RectangleMove implements Runnable {
             }
             this.rect.setX(150);
             this.rect.setY(300);
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 this.rect.setX(this.rect.getX() - 1);
                 this.rect.setY(this.rect.getY() - 1);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (this.rect.getX() == 0) {
                     break;
