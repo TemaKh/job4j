@@ -50,6 +50,10 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         }
     }
 
+    public int size() {
+        return this.size;
+    }
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
