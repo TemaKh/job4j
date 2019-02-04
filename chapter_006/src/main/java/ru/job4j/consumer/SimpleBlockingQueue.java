@@ -11,7 +11,7 @@ public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private Queue<T> queue = new LinkedList<T>();
 
-    private int capacity = 10;
+    private final int capacity = 10;
 
     public synchronized void offer(T value) {
         while (queue.size() > capacity) {

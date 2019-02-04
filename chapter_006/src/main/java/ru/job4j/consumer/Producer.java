@@ -3,9 +3,9 @@ package ru.job4j.consumer;
 import java.util.stream.IntStream;
 
 public class Producer extends Thread {
-    private SimpleBlockingQueue<Integer> queue;
+    private final SimpleBlockingQueue<Integer> queue;
 
-    public Producer(SimpleBlockingQueue<Integer> queue) {
+    public Producer(final SimpleBlockingQueue<Integer> queue) {
         this.queue = queue;
     }
 

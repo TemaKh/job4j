@@ -3,10 +3,10 @@ package ru.job4j.consumer;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Consumer extends Thread {
-    private SimpleBlockingQueue<Integer> queue;
-    private CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
+    private final SimpleBlockingQueue<Integer> queue;
+    private final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
 
-    public Consumer(SimpleBlockingQueue<Integer> queue) {
+    public Consumer(final SimpleBlockingQueue<Integer> queue) {
         this.queue = queue;
     }
 
