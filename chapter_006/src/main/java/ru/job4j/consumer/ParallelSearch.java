@@ -29,5 +29,6 @@ public class ParallelSearch {
         producer.join();
         consumer.interrupt();
         consumer.join();
+
     }
 }
