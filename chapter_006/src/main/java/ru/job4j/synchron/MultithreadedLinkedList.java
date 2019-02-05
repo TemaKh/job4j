@@ -4,40 +4,36 @@ import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 import ru.job4j.list.SimpleLinkedList;
 
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 @ThreadSafe
 public class MultithreadedLinkedList<E> implements Iterable<E> {
     @GuardedBy("this")
-    private SimpleLinkedList<E> simpleLinkedList = new SimpleLinkedList<>();
+    private LinkedList<E> linkedList = new LinkedList<>();
 
     public synchronized void add(E date) {
-        simpleLinkedList.add(date);
+        linkedList.add(date);
     }
 
     public synchronized E get(int index) {
-        return simpleLinkedList.get(index);
-    }
-
-    public synchronized E delete() {
-        return simpleLinkedList.delete();
+        return linkedList.get(index);
     }
 
     public synchronized boolean isEmpty() {
-        return simpleLinkedList.isEmpty();
+        return linkedList.isEmpty();
     }
 
     public synchronized int size() {
-        return simpleLinkedList.size();
+        return linkedList.size();
     }
 
     @Override
     public synchronized Iterator<E> iterator() {
-        return copy(simpleLinkedList).iterator();
+        return copy(linkedList).iterator();
     }
 
-    private SimpleLinkedList<E> copy(SimpleLinkedList<E> list) {
+    private SimpleLinkedList<E> copy(LinkedList<E> list) {
         SimpleLinkedList<E> copyList = new SimpleLinkedList<>();
         for (int i = 0; i < list.size(); i++) {
             copyList.add(list.get(i));
