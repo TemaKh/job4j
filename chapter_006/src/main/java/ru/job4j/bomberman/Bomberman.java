@@ -2,26 +2,22 @@ package ru.job4j.bomberman;
 
 import java.util.Random;
 
-public class Bomberman extends Thread {
-    private Cell position;
-    private Board board;
-    private Random random = new Random();
-
+public class Bomberman extends Heroes {
     public Bomberman(Cell position, Board board) {
-        this.position = position;
-        this.board = board;
+        super(position, board);
     }
 
     @Override
     public void run() {
-       moveBomderman();
+
     }
 
-    public void moveBomderman() {
-        board.getBoard()[position.getX()][position.getY()].lock();
+    public void moveBomderman(int x, int y) {
+        Cell position = getPosition();
+        getBoardForHero().getBoard()[position.getX()][position.getY()].lock();
         while (!Thread.currentThread().isInterrupted()) {
-            Cell newPosition = new Cell(random.nextInt(board.getSize()), random.nextInt(board.getSize()));
-            if (board.move(position, newPosition)) {
+            Cell newPosition = new Cell(x, y);
+            if (getBoardForHero().move(position, newPosition)) {
                 position = newPosition;
                 try {
                     Thread.sleep(1000);

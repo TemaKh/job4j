@@ -1,5 +1,8 @@
 package ru.job4j.bomberman;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -7,11 +10,14 @@ public class Board {
     private final ReentrantLock[][] board;
     private final Bomberman bomberman;
     private final int size;
+    Random random = new Random();
+    List<Heroes> badHeroes = new ArrayList<>();
 
-    public Board(int size) {
+    public Board(int size, int difficult) {
         this.size = size;
         this.board = new ReentrantLock[size][size];
         bomberman = new Bomberman(new Cell(0, 0), this);
+        levelOfDifficulti(difficult);
     }
 
     public boolean move(Cell sourse, Cell dest) {
@@ -32,5 +38,12 @@ public class Board {
 
     public ReentrantLock[][] getBoard() {
         return this.board;
+    }
+
+    private void levelOfDifficulti(int diff) {
+        for (int i = 0; i < diff; i++) {
+            badHeroes.add(new Monster(new Cell(random.nextInt(size), random.nextInt(size)), this));
+            badHeroes.add(new FieldBlocks(new Cell(random.nextInt(size), random.nextInt(size)), this));
+        }
     }
 }
