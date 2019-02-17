@@ -42,7 +42,7 @@ public class Board {
 
     private void levelOfDifficulti(int diff) {
         for (int i = 0; i < diff; i++) {
-            badHeroes.add(new Monster(new Cell(random.nextInt(size), random.nextInt(size)), this));
+            badHeroes.add(new Demon(new Cell(random.nextInt(size), random.nextInt(size)), this));
             badHeroes.add(new FieldBlocks(new Cell(random.nextInt(size), random.nextInt(size)), this));
         }
     }

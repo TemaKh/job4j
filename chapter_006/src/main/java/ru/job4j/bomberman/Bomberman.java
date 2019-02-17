@@ -1,7 +1,5 @@
 package ru.job4j.bomberman;
 
-import java.util.Random;
-
 public class Bomberman extends Heroes {
     public Bomberman(Cell position, Board board) {
         super(position, board);
@@ -24,6 +22,10 @@ public class Bomberman extends Heroes {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }
+            if (getBoardForHero().getBoard()[position.getX()][position.getY()].hasQueuedThreads()) {
+                System.out.println("Bomberman eaten");
+                break;
             }
         }
     }
