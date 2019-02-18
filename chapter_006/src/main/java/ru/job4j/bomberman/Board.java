@@ -18,6 +18,7 @@ public class Board {
         this.board = new ReentrantLock[size][size];
         bomberman = new Bomberman(new Cell(0, 0), this);
         levelOfDifficulti(difficult);
+        becomingARealDemon();
     }
 
     public boolean move(Cell sourse, Cell dest) {
@@ -44,6 +45,14 @@ public class Board {
         for (int i = 0; i < diff; i++) {
             badHeroes.add(new Demon(new Cell(random.nextInt(size), random.nextInt(size)), this));
             badHeroes.add(new FieldBlocks(new Cell(random.nextInt(size), random.nextInt(size)), this));
+        }
+    }
+
+    private void becomingARealDemon() {
+        for (Heroes hero : badHeroes) {
+            if (hero instanceof Demon) {
+                hero.setDaemon(true);
+            }
         }
     }
 }
