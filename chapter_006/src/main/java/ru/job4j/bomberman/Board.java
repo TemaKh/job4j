@@ -18,7 +18,6 @@ public class Board {
         this.board = new ReentrantLock[size][size];
         bomberman = new Bomberman(new Cell(0, 0), this);
         levelOfDifficulti(difficult);
-        becomingARealDemon();
     }
 
     public boolean move(Cell sourse, Cell dest) {
@@ -48,11 +47,11 @@ public class Board {
         }
     }
 
-    private void becomingARealDemon() {
-        for (Heroes hero : badHeroes) {
-            if (hero instanceof Demon) {
-                hero.setDaemon(true);
-            }
-        }
+    public Bomberman getBomberman() {
+        return bomberman;
+    }
+
+    public List<Heroes> getBadHeroes() {
+        return badHeroes;
     }
 }
