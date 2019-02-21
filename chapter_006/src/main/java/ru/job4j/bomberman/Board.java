@@ -11,7 +11,8 @@ public class Board {
     private final Bomberman bomberman;
     private final int size;
     Random random = new Random();
-    List<Heroes> badHeroes = new ArrayList<>();
+    List<Demon> demons = new ArrayList<>();
+    List<FieldBlocks> blocks = new ArrayList<>();
 
     public Board(int size, int difficult) {
         this.size = size;
@@ -42,8 +43,8 @@ public class Board {
 
     private void levelOfDifficulti(int diff) {
         for (int i = 0; i < diff; i++) {
-            badHeroes.add(new Demon(new Cell(random.nextInt(size), random.nextInt(size)), this));
-            badHeroes.add(new FieldBlocks(new Cell(random.nextInt(size), random.nextInt(size)), this));
+            demons.add(new Demon(new Cell(random.nextInt(size), random.nextInt(size)), this));
+            blocks.add(new FieldBlocks(new Cell(random.nextInt(size), random.nextInt(size)), this));
         }
     }
 
@@ -51,7 +52,11 @@ public class Board {
         return bomberman;
     }
 
-    public List<Heroes> getBadHeroes() {
-        return badHeroes;
+    public List<Demon> getDemons() {
+        return demons;
+    }
+
+    public List<FieldBlocks> getBlocks() {
+        return blocks;
     }
 }
