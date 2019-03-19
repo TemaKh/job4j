@@ -34,6 +34,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
     }
 
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public void close() throws Exception {
         if (connection != null) {

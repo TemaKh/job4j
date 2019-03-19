@@ -21,7 +21,7 @@ public class StoreSQL implements AutoCloseable {
         try {
             Class.forName(config.get("driver"));
             this.connect = DriverManager.getConnection(config.get("url"));
-        }catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class StoreSQL implements AutoCloseable {
     private void createTable() {
         try (Statement statement = connect.createStatement()) {
             statement.execute("CREATE TABLE IF NOT EXISTS entry(field INTEGER)");
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
