@@ -18,7 +18,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
     private static final Logger LOG = LogManager.getLogger(TrackerSQL.class.getName());
-    private List<Item> items = new ArrayList<>();
 
     public TrackerSQL(Properties config) {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -103,6 +102,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public List<Item> findAll() {
+        List<Item> items = new ArrayList<>();
         try (Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM items")) {
             while (rs.next()) {
@@ -120,6 +120,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public List<Item> findByName(String key) {
+        List<Item> items = new ArrayList<>();
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM items")) {
             while (rs.next()) {

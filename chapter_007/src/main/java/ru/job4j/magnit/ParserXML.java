@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParserXML {
-    private List<Integer> list = new ArrayList<>();
 
     public int parse(File dest) {
+        List<Integer> list = new ArrayList<>();
         int result = 0;
         try {
         SAXParserFactory factory = SAXParserFactory.newInstance();
