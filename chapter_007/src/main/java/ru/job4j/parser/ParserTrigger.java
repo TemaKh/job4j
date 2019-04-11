@@ -15,7 +15,7 @@ public class ParserTrigger {
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity("CronTrigger")
                 .withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-        scheduler.scheduleJob(job, trigger);
         scheduler.start();
+        scheduler.scheduleJob(job, trigger);
     }
 }

@@ -42,7 +42,7 @@ public class DBConnect implements AutoCloseable {
                     + "id serial primary key,"
                     + "name text,"
                     + "description text,"
-                    + "link text"
+                    + "link text,"
                     + "date timestamp"
                     + ")");
         } catch (SQLException e) {
