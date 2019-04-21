@@ -1,5 +1,7 @@
 package ru.job4j.parser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +18,7 @@ import java.util.Date;
  * Class for parsing the site sql.ru.
  */
 public class Parser {
+    private static final Logger LOG = LogManager.getLogger(DBConnect.class);
     /**
      * Method for parsing the site sql.ru.
      */
@@ -24,7 +27,7 @@ public class Parser {
             Timestamp lastTimestamp = getLastTimestamp(dbConnect);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             for (int i = 1; timestamp.after(lastTimestamp); i++) {
-                Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers" + i).get();
+                Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers/" + i).get();
                 Elements elements = doc.getElementsByClass("postslisttopic");
                 for (Element element : elements) {
                     String name = element.child(0).text();
@@ -36,12 +39,12 @@ public class Parser {
                     timestamp = new Timestamp(parseDate(date));
                     if (name.matches("(.*)Java\\W(.*)") && !name.matches("(.*)Java Script(.*)")
                             && timestamp.after(lastTimestamp)) {
-                        dbConnect.insert(name, description, link, timestamp.getTime());
+                        dbConnect.insert(new Entry(name, description, link, timestamp.getTime()));
                     }
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -72,7 +75,7 @@ public class Parser {
         try {
             date = format.parse(dateSite);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
         if (date != null) {
             result = date.getTime();

@@ -1,5 +1,8 @@
 package ru.job4j.parser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.InputStream;
 import java.sql.*;
 
@@ -9,6 +12,7 @@ import java.sql.*;
 public class DBConnect implements AutoCloseable {
     private Connection connection;
     private final Config config;
+    private static final Logger LOG = LogManager.getLogger(DBConnect.class);
 
     public DBConnect() {
         config = new Config();
@@ -29,7 +33,7 @@ public class DBConnect implements AutoCloseable {
             );
 
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -46,27 +50,24 @@ public class DBConnect implements AutoCloseable {
                     + "date timestamp"
                     + ")");
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 
     /**
      * Method adds an entry to the database.
-     * @param name - job name.
-     * @param description - job text.
-     * @param link - reference to the vacancy.
-     * @param data - Timestamp job posting dates.
+     * @param entry .
      */
-    public void insert(String name, String description, String link, long data) {
-        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO parser(name, description, link) "
+    public void insert(Entry entry) {
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO parser(name, description, link, date) "
                 + "VALUES (?, ?, ?, ?)")) {
-            statement.setString(1, name);
-            statement.setString(2, description);
-            statement.setString(3, link);
-            statement.setTimestamp(4, new Timestamp(data));
+            statement.setString(1, entry.getName());
+            statement.setString(2, entry.getDescription());
+            statement.setString(3, entry.getLink());
+            statement.setTimestamp(4, new Timestamp(entry.getData()));
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -82,7 +83,7 @@ public class DBConnect implements AutoCloseable {
                 last = set.getTimestamp(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
         return last;
     }
@@ -93,7 +94,7 @@ public class DBConnect implements AutoCloseable {
             try {
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOG.error(e.getMessage(), e);
             }
         }
     }
